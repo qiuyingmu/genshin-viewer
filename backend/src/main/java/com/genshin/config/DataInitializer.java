@@ -18,16 +18,21 @@ public class DataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
+        String encodedPw = passwordEncoder.encode("Zq010722.");
         if (!userRepository.existsByUsername("qiuyingmu")) {
             var user = new SysUser();
             user.setUsername("qiuyingmu");
-            user.setPassword(passwordEncoder.encode("Zq010722"));
+            user.setPassword(encodedPw);
             user.setNickname("qiuyingmu");
             user.setRole("admin");
             userRepository.insert(user);
             log.info("Default user created: qiuyingmu");
         } else {
-            log.info("Default user already exists");
+            // Update password in case it changed
+            var user = userRepository.findByUsername("qiuyingmu").get();
+            user.setPassword(encodedPw);
+            userRepository.updateById(user);
+            log.info("Default user password updated");
         }
     }
 }
