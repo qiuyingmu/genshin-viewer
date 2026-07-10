@@ -20,12 +20,6 @@ public class AuthController {
 
     private final AuthService authService;
 
-    @PostMapping("/register")
-    @OperationLog(action = "注册", resource = "用户")
-    public Result<AuthResponse> register(@Valid @RequestBody LoginRequest request) {
-        return Result.success(authService.register(request));
-    }
-
     @PostMapping("/login")
     @OperationLog(action = "登录", resource = "用户")
     public Result<AuthResponse> login(@Valid @RequestBody LoginRequest request) {

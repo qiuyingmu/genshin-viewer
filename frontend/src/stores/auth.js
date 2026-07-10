@@ -17,13 +17,6 @@ export const useAuthStore = defineStore('auth', () => {
     return res.data;
   }
 
-  async function register(data) {
-    const res = await authApi.register(data);
-    setTokens(res.data.accessToken, res.data.refreshToken);
-    user.value = res.data.user;
-    return res.data;
-  }
-
   async function fetchMe() {
     try {
       const res = await authApi.me();
@@ -53,5 +46,5 @@ export const useAuthStore = defineStore('auth', () => {
     fetchMe();
   }
 
-  return { user, accessToken, refreshToken, isLoggedIn, username, login, register, logout, fetchMe };
+  return { user, accessToken, refreshToken, isLoggedIn, username, login, logout, fetchMe };
 });

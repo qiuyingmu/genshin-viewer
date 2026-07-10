@@ -31,7 +31,7 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/health", "/ready").permitAll()
                 .requestMatchers("/h2-console/**").permitAll()
-                .requestMatchers(HttpMethod.POST, "/api/auth/register", "/api/auth/login", "/api/auth/refresh").permitAll()
+                .requestMatchers(HttpMethod.POST, "/api/auth/login", "/api/auth/refresh").permitAll()
                 .requestMatchers("/api/uid/**").permitAll()
                 .anyRequest().authenticated()
             )
