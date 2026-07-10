@@ -1,6 +1,8 @@
 package com.genshin.common;
 
 import lombok.Data;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 @Data
 public class Result<T> {
@@ -48,5 +50,9 @@ public class Result<T> {
 
     public static <T> Result<T> serverError(String message) {
         return error(500, message);
+    }
+
+    public ResponseEntity<Result<T>> toResponseEntity(HttpStatus status) {
+        return new ResponseEntity<>(this, status);
     }
 }

@@ -32,7 +32,7 @@ import { useAuthStore } from '@/stores/auth';
 const router = useRouter();
 const auth = useAuthStore();
 
-const username = ref('qiuyingmu');
+const username = ref('');
 const password = ref('');
 const loading = ref(false);
 const error = ref('');
